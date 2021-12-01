@@ -18,31 +18,63 @@
 //    ...
 //  ]
 
-let categories = [];
-
-
+//
+//
+//
+//
+//
 /** Get NUM_CATEGORIES random category from API.
  *
  * Returns array of category ids
  */
+//  https://jservice.io/api/category?id=18418
+// async function getRandomCategories() {
+//   let numberRandomizer = Math.floor(Math.random() * 18418 + 1); // This will generate a random number from 1 to 18418. (max. number of categories.)
 
-function getCategoryIds() {
+//   let res = await axios.get('https://jservice.io/api/category', {
+//     params: { id: `${numberRandomizer}` },
+//   });
+//   console.log(res.data);
+// }
+
+//
+//
+//
+//
+
+const numberOfCategories = 6;
+const numberOfQuestions = 5;
+let categories = [];
+
+async function getRandomCategories() {
+  for (let i = 0; i < numberOfCategories; i++) {
+    let numberRandomizer = Math.floor(Math.random() * 18418 + 1); // This will generate a random number from 1 to 18418. (max. number of categories.)
+    let res = await axios.get('https://jservice.io/api/category', {
+      params: { id: `${numberRandomizer}` },
+    });
+    categories.push(res.data.id);
+  }
+  console.log(categories);
 }
 
-/** Return object with data about a category:
- *
- *  Returns { title: "Math", clues: clue-array }
- *
- * Where clue-array is:
- *   [
- *      {question: "Hamlet Author", answer: "Shakespeare", showing: null},
- *      {question: "Bell Jar Author", answer: "Plath", showing: null},
- *      ...
- *   ]
- */
-
-function getCategory(catId) {
+async function getCategoryIds() {
+  /** Return object with data about a category:
+   *
+   *  Returns { title: "Math", clues: clue-array }
+   *
+   * Where clue-array is:
+   *   [
+   *      {question: "Hamlet Author", answer: "Shakespeare", showing: null},
+   *      {question: "Bell Jar Author", answer: "Plath", showing: null},
+   *      ...
+   *   ]
+   */
 }
+
+getRandomCategories();
+// getCategoryIds();
+
+// function getCategory(catId) {}
 
 /** Fill the HTML table#jeopardy with the categories & cells for questions.
  *
@@ -52,8 +84,7 @@ function getCategory(catId) {
  *   (initally, just show a "?" where the question/answer would go.)
  */
 
-async function fillTable() {
-}
+// async function fillTable() {}
 
 /** Handle clicking on a clue: show the question or answer.
  *
@@ -63,21 +94,17 @@ async function fillTable() {
  * - if currently "answer", ignore click
  * */
 
-function handleClick(evt) {
-}
+// function handleClick(evt) {}
 
 /** Wipe the current Jeopardy board, show the loading spinner,
  * and update the button used to fetch data.
  */
 
-function showLoadingView() {
-
-}
+// function showLoadingView() {}
 
 /** Remove the loading spinner and update the button used to fetch data. */
 
-function hideLoadingView() {
-}
+// function hideLoadingView() {}
 
 /** Start game:
  *
@@ -86,8 +113,7 @@ function hideLoadingView() {
  * - create HTML table
  * */
 
-async function setupAndStart() {
-}
+// async function setupAndStart() {}
 
 /** On click of start / restart button, set up game. */
 
