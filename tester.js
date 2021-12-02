@@ -63,6 +63,7 @@ function shuffle(array) {
 // console.log(result);
 
 async function getRandomCategories() {
+  // randomizes the list of categories and passes the 6 random categories into getCategoriesIds
   for (let i = 0; i < numberOfCategories; i++) {
     let numberRandomizer = Math.floor(Math.random() * 18418 + 1); // This will generate a random number from 1 to 18418. (max. number of categories.)
     let res = await axios.get('https://jservice.io/api/category', {
@@ -81,9 +82,7 @@ async function getCategoryIds(categories) {
       params: { id: `${categoryId}` },
     });
     let eachCategory = res.data.clues;
-    // console.log(eachCategory);
-    eachCategory1 = eachCategory.sort(() => Math.random() - 0.5);
-    console.log(_.shuffle(eachCategory).splice(0, 5)); // Using Fisher-Yates shuffle algorithm
+    let randomizedQuestions = _.shuffle(eachCategory).splice(0, 5); // Using Fisher-Yates shuffle algorithm
     // for (let eachCategory of returnedRandomizedCategory) {
     //   let shuffleEachCategory = shuffle(eachCategory);
     //   console.log(eachCategory);
@@ -109,7 +108,10 @@ async function getCategoryIds(categories) {
     //   title: categoryGroup.title,
     //   clues: categoryGroup.
     // }));
+    console.log(randomizedQuestions);
+    questions.push(randomizedQuestions);
   }
+  console.log(questions);
   /** Return object with data about a category:
    *
    *  Returns { title: "Math", clues: clue-array }

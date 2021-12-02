@@ -36,15 +36,27 @@
 const numberOfCategories = 6;
 const numberOfQuestions = 5;
 let categories = [];
-
-
+let questions = [];
 // **** There is a random method for JeopardyAPI. But the assessment claimed that I should figure out how to randomize it manually. The following commented out function is the JeopardyAPI random method:
 // let res = await axios.get('https://jservice.io/api/random', {
 //     params: { count: 6 },
 //   });
 
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
+
+// const result = shuffle([1, 2, 3, 4, 5]);
+// console.log(result);
 
 async function getRandomCategories() {
+  // randomizes the list of categories and passes the 6 random categories into getCategoriesIds
   for (let i = 0; i < numberOfCategories; i++) {
     let numberRandomizer = Math.floor(Math.random() * 18418 + 1); // This will generate a random number from 1 to 18418. (max. number of categories.)
     let res = await axios.get('https://jservice.io/api/category', {
@@ -57,17 +69,42 @@ async function getRandomCategories() {
 }
 
 async function getCategoryIds(categories) {
-  console.log(`getCategoryIds function: ${categories}`);
+  //   console.log(`getCategoryIds function: ${categories}`);
   for (let categoryId of categories) {
     let res = await axios.get('https://jservice.io/api/category', {
       params: { id: `${categoryId}` },
     });
-    let clueRandomizer = Math.floor(Math.random() * 18418 + 1)
-    let categoryGroup = res.data.map((title) => ({
-      title: categoryGroup.title,
-      clues: categoryGroup.
-    }));
+    let eachCategory = res.data.clues;
+    let randomizedQuestions = _.shuffle(eachCategory).splice(0, 5); // Using Fisher-Yates shuffle algorithm
+    // for (let eachCategory of returnedRandomizedCategory) {
+    //   let shuffleEachCategory = shuffle(eachCategory);
+    //   console.log(eachCategory);
+    // }
+    // console.log('test');
+    // console.log(result1);
+    // for (let eachCategory of returnedRandomizedCategory) {
+    //   for (let i = eachCategory.length - 1; i > 0; i--) {
+    //     let randomFiveQuestions = [];
+    //   }
+    //   questions.push(eachCategory);
+    // }
+    // console.log(questions);
+    // for (let i = 0; i < 5; i++) {
+    //   console.log(res.data.clues);
+    // }
+    // for (let i = res.data.length)
+    // for (let subData of res.data.clues) {
+    //   console.log(subData.answer);
+    // }
+    // let clueRandomizer = Math.floor(Math.random() * 18418 + 1)
+    // let categoryGroup = res.data.map((title) => ({
+    //   title: categoryGroup.title,
+    //   clues: categoryGroup.
+    // }));
+    console.log(randomizedQuestions);
+    questions.push(randomizedQuestions);
   }
+  console.log(questions);
   /** Return object with data about a category:
    *
    *  Returns { title: "Math", clues: clue-array }
@@ -82,6 +119,7 @@ async function getCategoryIds(categories) {
 }
 
 getRandomCategories();
+
 // getCategoryIds();
 
 // function getCategory(catId) {}
