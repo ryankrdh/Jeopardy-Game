@@ -42,19 +42,6 @@ let questions = [];
 //     params: { count: 6 },
 //   });
 
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-  return array;
-}
-
-// const result = shuffle([1, 2, 3, 4, 5]);
-// console.log(result);
-
 async function getRandomCategories() {
   // randomizes the list of categories and passes the 6 random categories into getCategoriesIds
   for (let i = 0; i < numberOfCategories; i++) {
@@ -64,47 +51,36 @@ async function getRandomCategories() {
     });
     categories.push(res.data.id);
   }
-  console.log(categories);
-  getCategoryIds(categories);
+  //   console.log(categories);
+  getCategoryIds(categories); // calls this function with the parameter of 6 randomized categories.
 }
 
 async function getCategoryIds(categories) {
+  // this function will grab the 6 randomized categories and filter and randomize the data.
   //   console.log(`getCategoryIds function: ${categories}`);
   for (let categoryId of categories) {
     let res = await axios.get('https://jservice.io/api/category', {
       params: { id: `${categoryId}` },
     });
     let eachCategory = res.data.clues;
-    let randomizedQuestions = _.shuffle(eachCategory).splice(0, 5); // Using Fisher-Yates shuffle algorithm
-    // for (let eachCategory of returnedRandomizedCategory) {
-    //   let shuffleEachCategory = shuffle(eachCategory);
-    //   console.log(eachCategory);
-    // }
-    // console.log('test');
-    // console.log(result1);
-    // for (let eachCategory of returnedRandomizedCategory) {
-    //   for (let i = eachCategory.length - 1; i > 0; i--) {
-    //     let randomFiveQuestions = [];
-    //   }
-    //   questions.push(eachCategory);
-    // }
-    // console.log(questions);
-    // for (let i = 0; i < 5; i++) {
-    //   console.log(res.data.clues);
-    // }
-    // for (let i = res.data.length)
-    // for (let subData of res.data.clues) {
-    //   console.log(subData.answer);
-    // }
-    // let clueRandomizer = Math.floor(Math.random() * 18418 + 1)
-    // let categoryGroup = res.data.map((title) => ({
-    //   title: categoryGroup.title,
-    //   clues: categoryGroup.
-    // }));
-    console.log(randomizedQuestions);
-    questions.push(randomizedQuestions);
+    let filteredQuestionData = eachCategory.map((categoryInfo) => ({
+      // filtering the data to the ones we need only.
+      title: res.data.title,
+      question: categoryInfo.question,
+      answer: categoryInfo.answer,
+      showing: null,
+    }));
+    // console.log('Not shuffled');
+    // console.log(filteredQuestionData);
+    // shuffle and condense the data.
+    let randomizeAndFilter = _.shuffle(filteredQuestionData).splice(0, 5); // Using Fisher-Yates shuffle algorithm
+    questions.push(randomizeAndFilter);
   }
+  console.log('shuffled and condensed');
   console.log(questions);
+  //   console.log(questions);
+
+  //   console.log(questions);
   /** Return object with data about a category:
    *
    *  Returns { title: "Math", clues: clue-array }
@@ -117,12 +93,6 @@ async function getCategoryIds(categories) {
    *   ]
    */
 }
-
-getRandomCategories();
-
-// getCategoryIds();
-
-// function getCategory(catId) {}
 
 /** Fill the HTML table#jeopardy with the categories & cells for questions.
  *
