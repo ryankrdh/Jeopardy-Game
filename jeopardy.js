@@ -65,6 +65,7 @@ async function getCategoryIds(categories) {
     let eachCategory = res.data.clues;
     let filteredQuestionData = eachCategory.map((categoryInfo) => ({
       // filtering the data to the ones we need only.
+      //   QUESTIONS: how do I make the key value pairs for question, answer, and showing all in clues? See example at top
       title: res.data.title,
       question: categoryInfo.question,
       answer: categoryInfo.answer,
