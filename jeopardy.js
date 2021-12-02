@@ -27,15 +27,6 @@
  *
  * Returns array of category ids
  */
-//  https://jservice.io/api/category?id=18418
-// async function getRandomCategories() {
-//   let numberRandomizer = Math.floor(Math.random() * 18418 + 1); // This will generate a random number from 1 to 18418. (max. number of categories.)
-
-//   let res = await axios.get('https://jservice.io/api/category', {
-//     params: { id: `${numberRandomizer}` },
-//   });
-//   console.log(res.data);
-// }
 
 //
 //
@@ -46,6 +37,13 @@ const numberOfCategories = 6;
 const numberOfQuestions = 5;
 let categories = [];
 
+
+// **** There is a random method for JeopardyAPI. But the assessment claimed that I should figure out how to randomize it manually. The following commented out function is the JeopardyAPI random method:
+// let res = await axios.get('https://jservice.io/api/random', {
+//     params: { count: 6 },
+//   });
+
+
 async function getRandomCategories() {
   for (let i = 0; i < numberOfCategories; i++) {
     let numberRandomizer = Math.floor(Math.random() * 18418 + 1); // This will generate a random number from 1 to 18418. (max. number of categories.)
@@ -55,9 +53,21 @@ async function getRandomCategories() {
     categories.push(res.data.id);
   }
   console.log(categories);
+  getCategoryIds(categories);
 }
 
-async function getCategoryIds() {
+async function getCategoryIds(categories) {
+  console.log(`getCategoryIds function: ${categories}`);
+  for (let categoryId of categories) {
+    let res = await axios.get('https://jservice.io/api/category', {
+      params: { id: `${categoryId}` },
+    });
+    let clueRandomizer = Math.floor(Math.random() * 18418 + 1)
+    let categoryGroup = res.data.map((title) => ({
+      title: categoryGroup.title,
+      clues: categoryGroup.
+    }));
+  }
   /** Return object with data about a category:
    *
    *  Returns { title: "Math", clues: clue-array }
