@@ -79,7 +79,8 @@ async function getCategoryIds(categories) {
   }
   console.log('shuffled and condensed');
   console.log(questions);
-  fillTable(questions);
+  fillCluesTable(questions);
+  fillCategoriesTable(categories);
   //   console.log(questions);
 
   //   console.log(questions);
@@ -104,11 +105,96 @@ async function getCategoryIds(categories) {
  *   (initally, just show a "?" where the question/answer would go.)
  */
 
-async function fillTable(questions) {
-  //   console.log(questions[0].title);
-  questions.forEach(function (item, i) {
-    console.log(Object.values(item[i]));
+// Creating the table
+function myFunction() {
+  $('body').prepend(`<table class="jeopardyTable"></table>`);
+  let $table = $(
+    `<thead>
+            <tr class="categoryRow">
+                <td class="catRow" id="0-C"></td>
+                <td class="catRow" id="1-C"></td>
+                <td class="catRow" id="2-C"></td>
+                <td class="catRow" id="3-C"></td>
+                <td class="catRow" id="4-C"></td>
+                <td class="catRow" id="5-C"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="clues1Row">
+                <td class="row" id="0-0">0-0</td>
+                <td class="row" id="1-0">1-0</td>
+                <td class="row" id="2-0">2-0</td>
+                <td class="row" id="3-0">3-0</td>
+                <td class="row" id="4-0">4-0</td>
+                <td class="row" id="5-0">5-0</td>
+            </tr>
+                <td class="row" id="0-1">0-1</td>
+                <td class="row" id="1-1">1-1</td>
+                <td class="row" id="2-1">2-1</td>
+                <td class="row" id="3-1">3-1</td>
+                <td class="row" id="4-1">4-1</td>
+                <td class="row" id="5-1">5-1</td>
+            <tr class="clues2Row">
+                <td class="row" id="0-2">0-2</td>
+                <td class="row" id="1-2">1-2</td>
+                <td class="row" id="2-2">2-2</td>
+                <td class="row" id="3-2">3-2</td>
+                <td class="row" id="4-2">4-2</td>
+                <td class="row" id="5-2">5-2</td>
+            </tr>
+            <tr class="clues3Row">
+                <td class="row" id="0-3">0-3</td>
+                <td class="row" id="1-3">1-3</td>
+                <td class="row" id="2-3">2-3</td>
+                <td class="row" id="3-3">3-3</td>
+                <td class="row" id="4-3">4-3</td>
+                <td class="row" id="5-3">5-3</td>
+            </tr>
+            <tr class="clues4Row">
+                <td class="row" id="0-4">0-4</td>
+                <td class="row" id="1-4">1-4</td>
+                <td class="row" id="2-4">2-4</td>
+                <td class="row" id="3-4">3-4</td>
+                <td class="row" id="4-4">4-4</td>
+                <td class="row" id="5-4">5-4</td>
+            </tr>
+        </tbody>
+        `
+  );
+  $('.jeopardyTable').append($table);
+  //   $('#jeopardyTable').append('<thead></thead>');
+
+  //   let row = header.insertRow(0);
+  //   let cell = row.insertCell(0);
+  //   cell.innerHTML = '<b>This is a table header</b>';
+}
+
+async function fillCategoriesTable(categories) {
+  // this function will use the categories array and call the category names using AJAX
+  categories.forEach(async function (item, i) {
+    let res = await axios.get('https://jservice.io/api/category', {
+      params: { id: `${item}` },
+    });
+    let categoryReceived = res.data.title;
+    $(`#${i}-C`).append(`${categoryReceived}`);
   });
+}
+
+function fillCluesTable(questions) {
+  console.log(questions[0][0]);
+  for (clue of questions)
+    questions.forEach(function (item, i) {
+      // let categoryType = Object.values(item[0].title);
+      // console.log(item[i].answer);
+      // console.log(i);
+      // $(`#${i}-C`).append(`${item[i].title}`);
+      // console.log(item[question[i].title].title);
+      // let individualCategoryType = categoryType.join('');
+      // console.log(individualCategoryType);
+      // $('.tableHead').append(
+      //   `<div class="categoryRow">${individualCategoryType}</div>`
+      // );
+    });
   //   for (let i = 0; i < numberOfCategories; i++) {
   //     $('.tableHead').append(`<tr>${questions[0]}</tr>`);
   //   }
@@ -155,4 +241,4 @@ async function fillTable(questions) {
 //
 //
 getRandomCategories();
-fillTable();
+myFunction();

@@ -5,3 +5,32 @@
   #8d2ab5
   #74119c
 */
+/* .jeopardyTable {
+  color: white;
+}
+.jeopardyTable .row {
+  border: 1px solid black;
+  background: #060ce9;
+} */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.jeopardyTable td {
+  border: solid 1px white;
+  width: 10em;
+  padding: 1em;
+}
+
+.jeopardyTable {
+  background: #060ce9;
+  border: 5px solid white;
+  text-align: center;
+  font-size: 10px;
+  color: white;
+  width: 100%;
+}
+
+.categoryRow {
+  font-weight: bold;
+}
