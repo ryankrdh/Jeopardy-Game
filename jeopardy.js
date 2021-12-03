@@ -79,8 +79,9 @@ async function getCategoryIds(categories) {
   }
   console.log('shuffled and condensed');
   console.log(questions);
-  fillCluesTable(questions);
   fillCategoriesTable(categories);
+  //   fillCluesTable(questions);
+  clickHandler(questions);
   //   console.log(questions);
 
   //   console.log(questions);
@@ -121,42 +122,42 @@ function myFunction() {
         </thead>
         <tbody>
             <tr class="clues1Row">
-                <td class="row" id="0-0">0-0</td>
-                <td class="row" id="1-0">1-0</td>
-                <td class="row" id="2-0">2-0</td>
-                <td class="row" id="3-0">3-0</td>
-                <td class="row" id="4-0">4-0</td>
-                <td class="row" id="5-0">5-0</td>
+                <td class="row" id="0-0"><b>?</b></td>
+                <td class="row" id="1-0"><b>?</b></td>
+                <td class="row" id="2-0"><b>?</b></td>
+                <td class="row" id="3-0"><b>?</b></td>
+                <td class="row" id="4-0"><b>?</b></td>
+                <td class="row" id="5-0"><b>?</b></td>
             </tr>
-                <td class="row" id="0-1">0-1</td>
-                <td class="row" id="1-1">1-1</td>
-                <td class="row" id="2-1">2-1</td>
-                <td class="row" id="3-1">3-1</td>
-                <td class="row" id="4-1">4-1</td>
-                <td class="row" id="5-1">5-1</td>
+                <td class="row" id="0-1"><b>?</b></td>
+                <td class="row" id="1-1"><b>?</b></td>
+                <td class="row" id="2-1"><b>?</b></td>
+                <td class="row" id="3-1"><b>?</b></td>
+                <td class="row" id="4-1"><b>?</b></td>
+                <td class="row" id="5-1"><b>?</b></td>
             <tr class="clues2Row">
-                <td class="row" id="0-2">0-2</td>
-                <td class="row" id="1-2">1-2</td>
-                <td class="row" id="2-2">2-2</td>
-                <td class="row" id="3-2">3-2</td>
-                <td class="row" id="4-2">4-2</td>
-                <td class="row" id="5-2">5-2</td>
+                <td class="row" id="0-2"><b>?</b></td>
+                <td class="row" id="1-2"><b>?</b></td>
+                <td class="row" id="2-2"><b>?</b></td>
+                <td class="row" id="3-2"><b>?</b></td>
+                <td class="row" id="4-2"><b>?</b></td>
+                <td class="row" id="5-2"><b>?</b></td>
             </tr>
             <tr class="clues3Row">
-                <td class="row" id="0-3">0-3</td>
-                <td class="row" id="1-3">1-3</td>
-                <td class="row" id="2-3">2-3</td>
-                <td class="row" id="3-3">3-3</td>
-                <td class="row" id="4-3">4-3</td>
-                <td class="row" id="5-3">5-3</td>
+                <td class="row" id="0-3"><b>?</b></td>
+                <td class="row" id="1-3"><b>?</b></td>
+                <td class="row" id="2-3"><b>?</b></td>
+                <td class="row" id="3-3"><b>?</b></td>
+                <td class="row" id="4-3"><b>?</b></td>
+                <td class="row" id="5-3"><b>?</b></td>
             </tr>
             <tr class="clues4Row">
-                <td class="row" id="0-4">0-4</td>
-                <td class="row" id="1-4">1-4</td>
-                <td class="row" id="2-4">2-4</td>
-                <td class="row" id="3-4">3-4</td>
-                <td class="row" id="4-4">4-4</td>
-                <td class="row" id="5-4">5-4</td>
+                <td class="row" id="0-4"><b>?</b></td>
+                <td class="row" id="1-4"><b>?</b></td>
+                <td class="row" id="2-4"><b>?</b></td>
+                <td class="row" id="3-4"><b>?</b></td>
+                <td class="row" id="4-4"><b>?</b></td>
+                <td class="row" id="5-4"><b>?</b></td>
             </tr>
         </tbody>
         `
@@ -180,50 +181,43 @@ async function fillCategoriesTable(categories) {
   });
 }
 
-function fillCluesTable(questions) {
-  console.log(questions[0][0]);
-  let eachClueKeyTest = Object.keys(questions[0]);
-  let eachClueValueTest = Object.values(questions[0][0])[0];
-  console.log(eachClueKeyTest);
-  console.log(eachClueValueTest);
-  console.log('-----------------------');
-  for (let i = 0; i < questions.length; i++) {
-    // let eachClueKeyTest1 = Object.keys(item);
-    let counter = i;
-    for (let i = 0; i < questions[0].length; i++) {
-      let eachClueValueTest1 = Object.values(questions[counter][i])[1]; //All questions from 1st clue.
-      //   console.log(eachClueKeyTest1);
-      console.log(eachClueValueTest1);
-      console.log(counter);
-    }
-  }
-  //   questions.forEach(function (item, i) {
-  //     item.forEach(function (secondItem, i) {
-  //       //   let eachClueKeyTest1 = Object.keys(secondItem);
-  //       let eachClueValueTest1 = Object.values(questions[0][i])[1]; //All questions from 1st clue.
-  //     //   let eachClueValueTest1 = Object.values(questions[0][i])[1]; //All questions from 1st clue.
-  //       //   console.log(eachClueKeyTest1);
-  //       console.log(eachClueValueTest1);
-  //       console.log('~~~~~~~~~~~');
-  //     });
-  //   });
-  // questions.forEach(function (item, i) {
-  // let categoryType = Object.values(item[0].title);
-  // console.log(item[i].answer);
-  // console.log(i);
-  // $(`#${i}-C`).append(`${item[i].title}`);
-  // console.log(item[question[i].title].title);
-  // let individualCategoryType = categoryType.join('');
-  // console.log(individualCategoryType);
-  // $('.tableHead').append(
-  //   `<div class="categoryRow">${individualCategoryType}</div>`
-  // );
-  // });
-  //   for (let i = 0; i < numberOfCategories; i++) {
-  //     $('.tableHead').append(`<tr>${questions[0]}</tr>`);
-  //   }
-}
+// function fillCluesTable(questions) {
+//   console.log(questions[0][0]);
+//   let eachClueKeyTest = Object.keys(questions[0]);
+//   let eachClueValueTest = Object.values(questions[0][0])[0];
+//   console.log(eachClueKeyTest);
+//   console.log(eachClueValueTest);
+//   console.log('-----------------------');
+//   for (let i = 0; i < questions.length; i++) {
+//     let counter = i; // loops through each Clue arrays.
+//     for (let i = 0; i < questions[0].length; i++) {
+//       let eachClueQuestions = Object.values(questions[counter][i])[1]; //All questions from each clue.
+//       let eachClueAnswers = Object.values(questions[counter][i])[2]; //All answers from each clue.
+//       let showingStatus = Object.values(questions[counter][i])[3]; // Sets all status to null
+//       $(`#${counter}-${i}`).append(`${eachClueQuestions}`);
+//       //   console.log(showingStatus);
+//       //   console.log(eachClueQuestions);
+//       //   console.log(eachClueAnswers);
+//       //   console.log(counter);
+//     }
+//   }
+// }
 
+function clickHandler(questions) {
+  $('td').on('click', function (evt) {
+    let evtId = evt.target.id;
+    let categoryId = evtId.charAt(0);
+    let cluesId = evtId.charAt(2);
+    let questionId = Object.values(questions[categoryId][cluesId])[1];
+    if (questionId === '') {
+      // This is in case the API question data is empty.
+      questionId = 'bonus points!(API did not hold any questions)';
+    }
+    // console.log(questionId);
+    $(evt.target).empty();
+    $(evt.target).append(`${questionId}`);
+  });
+}
 /** Handle clicking on a clue: show the question or answer.
  *
  * Uses .showing property on clue to determine what to show:

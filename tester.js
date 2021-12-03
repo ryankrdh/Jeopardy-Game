@@ -126,3 +126,12 @@ async function getCategoryIds(categories) {
 }
 
 getRandomCategories();
+
+function errorCatch(questions) {
+  try {
+    clickHandler(questions);
+  } catch (e) {
+    alert('Make sure to click on the box properly!');
+  }
+}
+errorCatch(questions);
