@@ -79,6 +79,7 @@ async function getCategoryIds(categories) {
   }
   console.log('shuffled and condensed');
   console.log(questions);
+  fillTable(questions);
   //   console.log(questions);
 
   //   console.log(questions);
@@ -103,7 +104,15 @@ async function getCategoryIds(categories) {
  *   (initally, just show a "?" where the question/answer would go.)
  */
 
-// async function fillTable() {}
+async function fillTable(questions) {
+  //   console.log(questions[0].title);
+  questions.forEach(function (item, i) {
+    console.log(Object.values(item[i]));
+  });
+  //   for (let i = 0; i < numberOfCategories; i++) {
+  //     $('.tableHead').append(`<tr>${questions[0]}</tr>`);
+  //   }
+}
 
 /** Handle clicking on a clue: show the question or answer.
  *
@@ -141,3 +150,9 @@ async function getCategoryIds(categories) {
 /** On page load, add event handler for clicking clues */
 
 // TODO
+
+//
+//
+//
+getRandomCategories();
+fillTable();
