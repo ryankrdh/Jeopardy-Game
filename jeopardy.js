@@ -182,19 +182,26 @@ async function fillCategoriesTable(categories) {
 
 function fillCluesTable(questions) {
   console.log(questions[0][0]);
-  for (clue of questions)
-    questions.forEach(function (item, i) {
-      // let categoryType = Object.values(item[0].title);
-      // console.log(item[i].answer);
-      // console.log(i);
-      // $(`#${i}-C`).append(`${item[i].title}`);
-      // console.log(item[question[i].title].title);
-      // let individualCategoryType = categoryType.join('');
-      // console.log(individualCategoryType);
-      // $('.tableHead').append(
-      //   `<div class="categoryRow">${individualCategoryType}</div>`
-      // );
-    });
+  //   let eachClueKey = Object.keys(questions[0])
+  //   let eachClueValue = Object.values(questions[0])
+  console.log(Object.keys(questions[0]));
+  console.log(Object.values(questions[0][0])[0]);
+  console.log('-----------------------');
+  questions.forEach(function (item, i) {
+    console.log();
+  });
+  // questions.forEach(function (item, i) {
+  // let categoryType = Object.values(item[0].title);
+  // console.log(item[i].answer);
+  // console.log(i);
+  // $(`#${i}-C`).append(`${item[i].title}`);
+  // console.log(item[question[i].title].title);
+  // let individualCategoryType = categoryType.join('');
+  // console.log(individualCategoryType);
+  // $('.tableHead').append(
+  //   `<div class="categoryRow">${individualCategoryType}</div>`
+  // );
+  // });
   //   for (let i = 0; i < numberOfCategories; i++) {
   //     $('.tableHead').append(`<tr>${questions[0]}</tr>`);
   //   }
