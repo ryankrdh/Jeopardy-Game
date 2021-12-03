@@ -182,14 +182,31 @@ async function fillCategoriesTable(categories) {
 
 function fillCluesTable(questions) {
   console.log(questions[0][0]);
-  //   let eachClueKey = Object.keys(questions[0])
-  //   let eachClueValue = Object.values(questions[0])
-  console.log(Object.keys(questions[0]));
-  console.log(Object.values(questions[0][0])[0]);
+  let eachClueKeyTest = Object.keys(questions[0]);
+  let eachClueValueTest = Object.values(questions[0][0])[0];
+  console.log(eachClueKeyTest);
+  console.log(eachClueValueTest);
   console.log('-----------------------');
-  questions.forEach(function (item, i) {
-    console.log();
-  });
+  for (let i = 0; i < questions.length; i++) {
+    // let eachClueKeyTest1 = Object.keys(item);
+    let counter = i;
+    for (let i = 0; i < questions[0].length; i++) {
+      let eachClueValueTest1 = Object.values(questions[counter][i])[1]; //All questions from 1st clue.
+      //   console.log(eachClueKeyTest1);
+      console.log(eachClueValueTest1);
+      console.log(counter);
+    }
+  }
+  //   questions.forEach(function (item, i) {
+  //     item.forEach(function (secondItem, i) {
+  //       //   let eachClueKeyTest1 = Object.keys(secondItem);
+  //       let eachClueValueTest1 = Object.values(questions[0][i])[1]; //All questions from 1st clue.
+  //     //   let eachClueValueTest1 = Object.values(questions[0][i])[1]; //All questions from 1st clue.
+  //       //   console.log(eachClueKeyTest1);
+  //       console.log(eachClueValueTest1);
+  //       console.log('~~~~~~~~~~~');
+  //     });
+  //   });
   // questions.forEach(function (item, i) {
   // let categoryType = Object.values(item[0].title);
   // console.log(item[i].answer);
