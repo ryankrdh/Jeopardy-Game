@@ -139,6 +139,7 @@ function clickHandler(questions) {
   // this will show questions or answers on click depending on the status.
   $('td').on('click', function (evt) {
     // this if statement checks to see if the question is already showing, if it is, it will show the answer
+    // console.log(evt.target);
     if (evt.target.classList.value === 'showing') {
       let evtId = evt.target.id;
       let categoryId = evtId.charAt(0);
@@ -174,3 +175,5 @@ function setupAndStart() {
     document.reload();
   });
 }
+
+// QUESTION: how to get rid of type error when clicked on ?
