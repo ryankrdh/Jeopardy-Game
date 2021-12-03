@@ -135,3 +135,25 @@ function errorCatch(questions) {
   }
 }
 errorCatch(questions);
+
+// function fillCluesTable(questions) {
+//   console.log(questions[0][0]);
+//   let eachClueKeyTest = Object.keys(questions[0]);
+//   let eachClueValueTest = Object.values(questions[0][0])[0];
+//   console.log(eachClueKeyTest);
+//   console.log(eachClueValueTest);
+//   console.log('-----------------------');
+//   for (let i = 0; i < questions.length; i++) {
+//     let counter = i; // loops through each Clue arrays.
+//     for (let i = 0; i < questions[0].length; i++) {
+//       let eachClueQuestions = Object.values(questions[counter][i])[1]; //All questions from each clue.
+//       let eachClueAnswers = Object.values(questions[counter][i])[2]; //All answers from each clue.
+//       let showingStatus = Object.values(questions[counter][i])[3]; // Sets all status to null
+//       $(`#${counter}-${i}`).append(`${eachClueQuestions}`);
+//       //   console.log(showingStatus);
+//       //   console.log(eachClueQuestions);
+//       //   console.log(eachClueAnswers);
+//       //   console.log(counter);
+//     }
+//   }
+// }

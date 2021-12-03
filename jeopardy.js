@@ -112,62 +112,58 @@ function myFunction() {
   let $table = $(
     `<thead>
             <tr class="categoryRow">
-                <td class="catRow" id="0-C"></td>
-                <td class="catRow" id="1-C"></td>
-                <td class="catRow" id="2-C"></td>
-                <td class="catRow" id="3-C"></td>
-                <td class="catRow" id="4-C"></td>
-                <td class="catRow" id="5-C"></td>
+                <td id="0-C"></td>
+                <td id="1-C"></td>
+                <td id="2-C"></td>
+                <td id="3-C"></td>
+                <td id="4-C"></td>
+                <td id="5-C"></td>
             </tr>
         </thead>
         <tbody>
             <tr class="clues1Row">
-                <td class="row" id="0-0"><b>?</b></td>
-                <td class="row" id="1-0"><b>?</b></td>
-                <td class="row" id="2-0"><b>?</b></td>
-                <td class="row" id="3-0"><b>?</b></td>
-                <td class="row" id="4-0"><b>?</b></td>
-                <td class="row" id="5-0"><b>?</b></td>
+                <td id="0-0"><b>?</b></td>
+                <td id="1-0"><b>?</b></td>
+                <td id="2-0"><b>?</b></td>
+                <td id="3-0"><b>?</b></td>
+                <td id="4-0"><b>?</b></td>
+                <td id="5-0"><b>?</b></td>
             </tr>
-                <td class="row" id="0-1"><b>?</b></td>
-                <td class="row" id="1-1"><b>?</b></td>
-                <td class="row" id="2-1"><b>?</b></td>
-                <td class="row" id="3-1"><b>?</b></td>
-                <td class="row" id="4-1"><b>?</b></td>
-                <td class="row" id="5-1"><b>?</b></td>
+                <td id="0-1"><b>?</b></td>
+                <td id="1-1"><b>?</b></td>
+                <td id="2-1"><b>?</b></td>
+                <td id="3-1"><b>?</b></td>
+                <td id="4-1"><b>?</b></td>
+                <td id="5-1"><b>?</b></td>
             <tr class="clues2Row">
-                <td class="row" id="0-2"><b>?</b></td>
-                <td class="row" id="1-2"><b>?</b></td>
-                <td class="row" id="2-2"><b>?</b></td>
-                <td class="row" id="3-2"><b>?</b></td>
-                <td class="row" id="4-2"><b>?</b></td>
-                <td class="row" id="5-2"><b>?</b></td>
+                <td id="0-2"><b>?</b></td>
+                <td id="1-2"><b>?</b></td>
+                <td id="2-2"><b>?</b></td>
+                <td id="3-2"><b>?</b></td>
+                <td id="4-2"><b>?</b></td>
+                <td id="5-2"><b>?</b></td>
             </tr>
             <tr class="clues3Row">
-                <td class="row" id="0-3"><b>?</b></td>
-                <td class="row" id="1-3"><b>?</b></td>
-                <td class="row" id="2-3"><b>?</b></td>
-                <td class="row" id="3-3"><b>?</b></td>
-                <td class="row" id="4-3"><b>?</b></td>
-                <td class="row" id="5-3"><b>?</b></td>
+                <td id="0-3"><b>?</b></td>
+                <td id="1-3"><b>?</b></td>
+                <td id="2-3"><b>?</b></td>
+                <td id="3-3"><b>?</b></td>
+                <td id="4-3"><b>?</b></td>
+                <td id="5-3"><b>?</b></td>
             </tr>
             <tr class="clues4Row">
-                <td class="row" id="0-4"><b>?</b></td>
-                <td class="row" id="1-4"><b>?</b></td>
-                <td class="row" id="2-4"><b>?</b></td>
-                <td class="row" id="3-4"><b>?</b></td>
-                <td class="row" id="4-4"><b>?</b></td>
-                <td class="row" id="5-4"><b>?</b></td>
+                <td id="0-4"><b>?</b></td>
+                <td id="1-4"><b>?</b></td>
+                <td id="2-4"><b>?</b></td>
+                <td id="3-4"><b>?</b></td>
+                <td id="4-4"><b>?</b></td>
+                <td id="5-4"><b>?</b></td>
             </tr>
         </tbody>
         `
   );
   $('.jeopardyTable').append($table);
-  //   $('#jeopardyTable').append('<thead></thead>');
-
-  //   let row = header.insertRow(0);
-  //   let cell = row.insertCell(0);
-  //   cell.innerHTML = '<b>This is a table header</b>';
+  getRandomCategories();
 }
 
 async function fillCategoriesTable(categories) {
@@ -181,58 +177,50 @@ async function fillCategoriesTable(categories) {
   });
 }
 
-// function fillCluesTable(questions) {
-//   console.log(questions[0][0]);
-//   let eachClueKeyTest = Object.keys(questions[0]);
-//   let eachClueValueTest = Object.values(questions[0][0])[0];
-//   console.log(eachClueKeyTest);
-//   console.log(eachClueValueTest);
-//   console.log('-----------------------');
-//   for (let i = 0; i < questions.length; i++) {
-//     let counter = i; // loops through each Clue arrays.
-//     for (let i = 0; i < questions[0].length; i++) {
-//       let eachClueQuestions = Object.values(questions[counter][i])[1]; //All questions from each clue.
-//       let eachClueAnswers = Object.values(questions[counter][i])[2]; //All answers from each clue.
-//       let showingStatus = Object.values(questions[counter][i])[3]; // Sets all status to null
-//       $(`#${counter}-${i}`).append(`${eachClueQuestions}`);
-//       //   console.log(showingStatus);
-//       //   console.log(eachClueQuestions);
-//       //   console.log(eachClueAnswers);
-//       //   console.log(counter);
-//     }
-//   }
-// }
 
 function clickHandler(questions) {
   $('td').on('click', function (evt) {
-    let evtId = evt.target.id;
-    let categoryId = evtId.charAt(0);
-    let cluesId = evtId.charAt(2);
-    let questionId = Object.values(questions[categoryId][cluesId])[1];
-    if (questionId === '') {
-      // This is in case the API question data is empty.
-      questionId = 'bonus points!(API did not hold any questions)';
+    // this if statement checks to see if the question is already showing, if it is, it will show the answer
+    if (evt.target.classList.value === 'showing') {
+      let evtId = evt.target.id;
+      let categoryId = evtId.charAt(0);
+      let cluesId = evtId.charAt(2);
+      let questionId = Object.values(questions[categoryId][cluesId])[2];
+      if (questionId === '' || questionId === '=') {
+        // This is in case the API question data is empty.
+        questionId = 'bonus points!(API did not hold any answers)';
+      }
+      // console.log(questionId);
+      $(evt.target).empty();
+      $(evt.target).append(`${questionId}`);
+      evt.target.classList.add('showing');
+    } else {
+      // this will show the question if it hasn't been showing yet.
+      let evtId = evt.target.id;
+      let categoryId = evtId.charAt(0);
+      let cluesId = evtId.charAt(2);
+      let questionId = Object.values(questions[categoryId][cluesId])[1];
+      if (questionId === '' || questionId === '=') {
+        // This is in case the API question data is empty.
+        questionId = 'bonus points!(API did not hold any questions)';
+      }
+      // console.log(questionId);
+      $(evt.target).empty();
+      $(evt.target).append(`${questionId}`);
+      evt.target.classList.add('showing');
+      //   console.log(evt.target);
     }
-    // console.log(questionId);
-    $(evt.target).empty();
-    $(evt.target).append(`${questionId}`);
   });
 }
-/** Handle clicking on a clue: show the question or answer.
- *
- * Uses .showing property on clue to determine what to show:
- * - if currently null, show question & set .showing to "question"
- * - if currently "question", show answer & set .showing to "answer"
- * - if currently "answer", ignore click
- * */
-
-// function handleClick(evt) {}
 
 /** Wipe the current Jeopardy board, show the loading spinner,
  * and update the button used to fetch data.
  */
 
-// function showLoadingView() {}
+function showLoadingView() {
+    document.body.innerHTML ='';
+  $('body').prepend('<div class="loader"></div>');
+}
 
 /** Remove the loading spinner and update the button used to fetch data. */
 
@@ -245,7 +233,12 @@ function clickHandler(questions) {
  * - create HTML table
  * */
 
-// async function setupAndStart() {}
+async function setupAndStart() {
+  $('body').prepend('<button class="restart">Restart Game</button>');
+  $('.restart').on('click' function () {
+      myFunction();
+  });
+}
 
 /** On click of start / restart button, set up game. */
 
@@ -258,5 +251,5 @@ function clickHandler(questions) {
 //
 //
 //
-getRandomCategories();
-myFunction();
+showLoadingView()
+// setupAndStart();
