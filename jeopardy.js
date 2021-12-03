@@ -1,42 +1,25 @@
-// categories is the main data structure for the app; it looks like this:
+'use strict';
 
-//  [
-//    { title: "Math",
-//      clues: [
-//        {question: "2+2", answer: 4, showing: null},
-//        {question: "1+1", answer: 2, showing: null}
-//        ...
-//      ],
-//    },
-//    { title: "Literature",
-//      clues: [
-//        {question: "Hamlet Author", answer: "Shakespeare", showing: null},
-//        {question: "Bell Jar Author", answer: "Plath", showing: null},
-//        ...
-//      ],
-//    },
-//    ...
-//  ]
-
-//
-//
-//
-//
-//
-/** Get NUM_CATEGORIES random category from API.
- *
- * Returns array of category ids
- */
-
-//
-//
-//
-//
+// Learned how to show/hide loading page: https://www.geeksforgeeks.org/how-to-show-page-loading-div-until-the-page-has-finished-loading/
+$(document).on('readystatechange', function () {
+  if (document.readyState !== 'complete') {
+    // if the page isn't loaded yet, play the loading page.
+    $('body').css('display', '');
+    $('.loader').show();
+    $('.loaderText').show();
+  } else {
+    $('.loader').hide();
+    $('.loaderText').hide();
+    myFunction();
+    $('body').show();
+  }
+});
 
 const numberOfCategories = 6;
 const numberOfQuestions = 5;
 let categories = [];
 let questions = [];
+
 // **** There is a random method for JeopardyAPI. But the assessment claimed that I should figure out how to randomize it manually. The following commented out function is the JeopardyAPI random method:
 // let res = await axios.get('https://jservice.io/api/random', {
 //     params: { count: 6 },
@@ -51,13 +34,11 @@ async function getRandomCategories() {
     });
     categories.push(res.data.id);
   }
-  //   console.log(categories);
   getCategoryIds(categories); // calls this function with the parameter of 6 randomized categories.
 }
 
 async function getCategoryIds(categories) {
   // this function will grab the 6 randomized categories and filter and randomize the data.
-  //   console.log(`getCategoryIds function: ${categories}`);
   for (let categoryId of categories) {
     let res = await axios.get('https://jservice.io/api/category', {
       params: { id: `${categoryId}` },
@@ -65,50 +46,27 @@ async function getCategoryIds(categories) {
     let eachCategory = res.data.clues;
     let filteredQuestionData = eachCategory.map((categoryInfo) => ({
       // filtering the data to the ones we need only.
-      //   QUESTIONS: how do I make the key value pairs for question, answer, and showing all in clues? See example at top
       title: res.data.title,
       question: categoryInfo.question,
       answer: categoryInfo.answer,
-      showing: null,
     }));
-    // console.log('Not shuffled');
-    // console.log(filteredQuestionData);
     // shuffle and condense the data.
-    let randomizeAndFilter = _.shuffle(filteredQuestionData).splice(0, 5); // Using Fisher-Yates shuffle algorithm
+    // Using Fisher-Yates shuffle algorithm: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    let randomizeAndFilter = _.shuffle(filteredQuestionData).splice(0, 5);
     questions.push(randomizeAndFilter);
   }
-  console.log('shuffled and condensed');
   console.log(questions);
   fillCategoriesTable(categories);
-  //   fillCluesTable(questions);
   clickHandler(questions);
-  //   console.log(questions);
-
-  //   console.log(questions);
-  /** Return object with data about a category:
-   *
-   *  Returns { title: "Math", clues: clue-array }
-   *
-   * Where clue-array is:
-   *   [
-   *      {question: "Hamlet Author", answer: "Shakespeare", showing: null},
-   *      {question: "Bell Jar Author", answer: "Plath", showing: null},
-   *      ...
-   *   ]
-   */
 }
-
-/** Fill the HTML table#jeopardy with the categories & cells for questions.
- *
- * - The <thead> should be filled w/a <tr>, and a <td> for each category
- * - The <tbody> should be filled w/NUM_QUESTIONS_PER_CAT <tr>s,
- *   each with a question for each category in a <td>
- *   (initally, just show a "?" where the question/answer would go.)
- */
 
 // Creating the table
 function myFunction() {
+  $('body').prepend('<button class="restart">Restart Game</button>'); // restart button
   $('body').prepend(`<table class="jeopardyTable"></table>`);
+  $('.restart').on('click', function () {
+    location.reload();
+  });
   let $table = $(
     `<thead>
             <tr class="categoryRow">
@@ -177,8 +135,8 @@ async function fillCategoriesTable(categories) {
   });
 }
 
-
 function clickHandler(questions) {
+  // this will show questions or answers on click depending on the status.
   $('td').on('click', function (evt) {
     // this if statement checks to see if the question is already showing, if it is, it will show the answer
     if (evt.target.classList.value === 'showing') {
@@ -190,7 +148,6 @@ function clickHandler(questions) {
         // This is in case the API question data is empty.
         questionId = 'bonus points!(API did not hold any answers)';
       }
-      // console.log(questionId);
       $(evt.target).empty();
       $(evt.target).append(`${questionId}`);
       evt.target.classList.add('showing');
@@ -204,52 +161,16 @@ function clickHandler(questions) {
         // This is in case the API question data is empty.
         questionId = 'bonus points!(API did not hold any questions)';
       }
-      // console.log(questionId);
       $(evt.target).empty();
       $(evt.target).append(`${questionId}`);
       evt.target.classList.add('showing');
-      //   console.log(evt.target);
     }
   });
 }
 
-/** Wipe the current Jeopardy board, show the loading spinner,
- * and update the button used to fetch data.
- */
-
-function showLoadingView() {
-    document.body.innerHTML ='';
-  $('body').prepend('<div class="loader"></div>');
-}
-
-/** Remove the loading spinner and update the button used to fetch data. */
-
-// function hideLoadingView() {}
-
-/** Start game:
- *
- * - get random category Ids
- * - get data for each category
- * - create HTML table
- * */
-
-async function setupAndStart() {
-  $('body').prepend('<button class="restart">Restart Game</button>');
-  $('.restart').on('click' function () {
-      myFunction();
+function setupAndStart() {
+  $('.restart').on('click', function () {
+    // document.body.innerHTML = '';
+    document.reload();
   });
 }
-
-/** On click of start / restart button, set up game. */
-
-// TODO
-
-/** On page load, add event handler for clicking clues */
-
-// TODO
-
-//
-//
-//
-showLoadingView()
-// setupAndStart();
