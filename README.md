@@ -8,9 +8,13 @@ To test what I know about Javascript.
 
 ## How to use
 
--
+## Click on each question marked box to reveal jeopardy questions.
 
 ## Game Functions
+
+Game shows randomized categories with randomzied questions on the board.
+First click will reveal the question.
+Second click will reveal the answer.
 
 -
 
