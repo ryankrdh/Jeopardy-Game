@@ -16,8 +16,6 @@ Game shows randomized categories with randomzied questions on the board.
 First click will reveal the question.
 Second click will reveal the answer.
 
--
-
 ## Getting Started
 
 <a href="https://ryankrdh.github.io/Jeopardy-Game/">CLICK to start the app</a>
