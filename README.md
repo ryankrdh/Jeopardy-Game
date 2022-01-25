@@ -20,7 +20,7 @@ Second click will reveal the answer.
 
 ## Getting Started
 
-Download all files and folders into ONE folder. Open "index.html" to play.
+<a href="https://ryankrdh.github.io/Restaurant-Decider/">CLICK to start the app</a>
 
 ## Deployment
 
