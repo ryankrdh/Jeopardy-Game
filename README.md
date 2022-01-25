@@ -20,7 +20,7 @@ Second click will reveal the answer.
 
 ## Getting Started
 
-<a href="https://ryankrdh.github.io/Restaurant-Decider/">CLICK to start the app</a>
+<a href="https://ryankrdh.github.io/Jeopardy-Game/">CLICK to start the app</a>
 
 ## Deployment
 
